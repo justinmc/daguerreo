@@ -39,12 +39,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<div id="container">
 		<div id="header">
 			<h1>Daguerreo</h1>
-			<a href = "/about/">About</a>
-			<a href = "/posts/">Blog</a>
-			<a href = "/photos/">Photos</a>
+			<?php echo $this->Html->link('Blog', '/blog/'); ?>
+			<?php echo $this->Html->link('Photos', '/photos/'); ?>
+			<?php echo $this->Html->link('About', '/about/'); ?>
 		</div>
 		<div id="content">
-
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
