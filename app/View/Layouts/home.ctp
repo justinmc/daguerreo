@@ -51,7 +51,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-
+			Copyright <?php echo date('Y'); ?> Bella's Mom
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>

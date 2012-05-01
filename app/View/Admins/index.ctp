@@ -3,7 +3,7 @@
 	Only the owner of the site can use this page!  Login page coming soon to fight off all you haxorz.
 </p>
 <br />
-<form name="addPost" action="/admin/addPost" method="post">
+<form name="addPost" action="/admin/addPost" method="post" enctype="multipart/form-data">
 	<table>
 	<tbody>
 		<tr>
@@ -39,9 +39,18 @@
 				<input type="text" name="title_py" />
 			</td>
 		</tr>
+		<tr>
+			<td>
+				Upload a Title Photo:
+			</td>
+			<td>
+				<input type="file" name="titlepic" />
+			</td>
+		</tr>
 	</tbody>
 	</table>
 	<textarea class="ckeditor" name="post">Write a new post here!</textarea>
 	<br />
+	
 	<input type="submit" value="Submit" />
 </form>
