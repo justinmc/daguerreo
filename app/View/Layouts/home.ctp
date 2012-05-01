@@ -39,11 +39,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link('Daguerreo', '/'); ?></h1>
-			<?php echo $this->Html->link('Blog', '/blog/'); ?>
-			<?php echo $this->Html->link('Photos', '/photos/'); ?>
-			<?php echo $this->Html->link('About', '/about/'); ?>
-			<?php echo $this->Html->link('Admin', '/admin/'); ?>
+			<h1><?php echo $this->Html->link('摄影世界', '/'); ?></h1>
+			<?php echo $this->Html->link('游记', '/blog/'); ?>
+			<?php echo $this->Html->link('相册', '/photos/'); ?>
+			<?php echo $this->Html->link('关于', '/about/'); ?>
+			<?php echo $this->Html->link('管理员', '/admin/'); ?>
 		</div>
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>

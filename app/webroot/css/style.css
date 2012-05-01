@@ -20,7 +20,7 @@ a {
 }
 a:hover {
 	color: #323232;
-	text-decoration:none;
+	text-decoration:underline;
 }
 a img {
 	border:none;
@@ -96,7 +96,7 @@ p {
 }
 #header h1 a:hover {
 	color: #fff;
-	text-decoration: underline;
+	text-decoration: none;
 }
 #content{
 	background: #fff;
