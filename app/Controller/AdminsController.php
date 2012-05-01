@@ -13,6 +13,7 @@ class AdminsController extends AppController {
 		$this->set('id', $id);
 	}
 	
+	// Adds a post to the database and redirects
 	public function addPost () {
 		
 		$this->loadModel('Post');
@@ -21,8 +22,8 @@ class AdminsController extends AppController {
     	if ($this->request->is('post')) {
     		
 			$formdata = $this->request->data;
-			// Make the title lower case, for url matching purposes
-			$formdata['title_py'] = str_replace(' ', '_', strtolower($formdata['title_py']));
+			// Format the title, for url matching purposes
+			$formdata['title_py'] = str_replace(' ', '_', preg_replace("/[^a-z0-9 ]/", '', strtolower($formdata['title_py'])));
 			
 	        if ($this->Post->save($formdata)) {
 	            $this->Session->setFlash("New post added");
