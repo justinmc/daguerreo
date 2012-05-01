@@ -3,6 +3,18 @@
 	Only the owner of the site can use this page!  Login page coming soon to fight off all you haxorz.
 </p>
 <br />
+<h2>Control Panel</h2>
+<p>
+	From this page, you can:
+</p>
+<ul>
+	<li><a href="#">Create a new post</a></li>
+	<li><a href="#">Manage existing posts</a></li>
+	<li><a href="#">Manage photos</a></li>
+</ul>
+<br /><br />
+<h2>Create a New Post</h2>
+<br />
 <form name="addPost" action="/admin/addPost" method="post" enctype="multipart/form-data">
 	<table>
 	<tbody>
@@ -51,6 +63,5 @@
 	</table>
 	<textarea class="ckeditor" name="post">Write a new post here!</textarea>
 	<br />
-	
 	<input type="submit" value="Submit" />
 </form>

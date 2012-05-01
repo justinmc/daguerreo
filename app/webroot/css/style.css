@@ -1,3 +1,23 @@
+/* 
+ * Custom Style
+ */
+
+#pagination li {
+	border: 4px #FF3232 solid;	
+	border-radius:5em;
+	padding:6px;
+}
+#pagination li:hover { 
+	background-color: #FF3232;
+}
+#pagination li.active {
+	background-color: #FF3232;
+}
+
+
+/*
+ * HTML 5 Boilerplate and Cake PHP style
+ */
 @charset "utf-8";
 
 * {
@@ -49,25 +69,10 @@ h4 {
 	color: #993;
 	font-weight: normal;
 }
+
 ul, li {
-	list-style-type: none;
 	margin:0;
 	padding:0;
-	display:inline;
-}
-
-li {
-	border: 4px #FF3232 solid;	
-	border-radius:5em;
-	padding:6px;
-}
-
-li:hover
-{background-color: #FF3232;
-}
-
-li.active {
-	background-color: #FF3232;
 }
 
 p {
