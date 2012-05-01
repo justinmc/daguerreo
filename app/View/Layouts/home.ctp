@@ -34,6 +34,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -42,6 +43,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<?php echo $this->Html->link('Blog', '/blog/'); ?>
 			<?php echo $this->Html->link('Photos', '/photos/'); ?>
 			<?php echo $this->Html->link('About', '/about/'); ?>
+			<?php echo $this->Html->link('Admin', '/admin/'); ?>
 		</div>
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>

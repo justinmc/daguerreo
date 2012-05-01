@@ -1,7 +1,7 @@
 <?php
 class PostsController extends AppController {
     	
-    public $helpers = array('Html');
+    public $helpers = array('Html', 'Time');
 	
 	public function index() {
 	    $this->layout = 'home';
