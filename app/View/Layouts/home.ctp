@@ -39,7 +39,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Daguerreo</h1>
+			<h1><?php echo $this->Html->link('Daguerreo', '/'); ?></h1>
 			<?php echo $this->Html->link('Blog', '/blog/'); ?>
 			<?php echo $this->Html->link('Photos', '/photos/'); ?>
 			<?php echo $this->Html->link('About', '/about/'); ?>

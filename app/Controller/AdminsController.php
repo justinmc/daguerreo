@@ -19,8 +19,12 @@ class AdminsController extends AppController {
 
 		// Has any form data been POSTed?
     	if ($this->request->is('post')) {
-	        // If the form data can be validated and saved...
-	        if ($this->Post->save($this->request->data)) {
+    		
+			$formdata = $this->request->data;
+			// Make the title lower case, for url matching purposes
+			$formdata['title_py'] = str_replace(' ', '_', strtolower($formdata['title_py']));
+			
+	        if ($this->Post->save($formdata)) {
 	            $this->Session->setFlash("New post added");
 	        }
     	}
