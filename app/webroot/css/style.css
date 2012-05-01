@@ -15,7 +15,7 @@ body {
 }
 a {
 	color: #323232;
-	text-decoration: underline;
+	text-decoration: none;
 	font-weight: bold;
 }
 a:hover {
@@ -50,8 +50,26 @@ h4 {
 	font-weight: normal;
 }
 ul, li {
-	margin: 0 12px;
+	list-style-type: none;
+	margin:0;
+	padding:0;
+	display:inline;
 }
+
+li {
+	border: 4px #FF3232 solid;	
+	border-radius:5em;
+	padding:6px;
+}
+
+li:hover
+{background-color: #FF3232;
+}
+
+li.active {
+	background-color: #FF3232;
+}
+
 p {
 	margin: 0 0 1em 0;
 }

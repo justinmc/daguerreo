@@ -7,5 +7,10 @@
 	<?php echo $post['Post']['post']; ?>
 </p>
 <br />
-
 <?php endforeach; ?>
+
+<ul id="pagination">
+<a href="#"><li class="inactive">1</li></a>
+<a href="#"><li class="active">2</li></a>
+<a href="#"><li class="inactive">3</li></a>
+</ul>
