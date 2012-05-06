@@ -39,6 +39,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
+			<br />
 			<h1><?php echo $this->Html->link('摄影世界', '/'); ?></h1>
 			<?php echo $this->Html->link('游记', '/blog/'); ?>
 			<?php echo $this->Html->link('相册', '/photos/'); ?>

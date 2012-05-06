@@ -32,7 +32,7 @@
 body {
 	background: #003d4c;
 	color: #fff;
-	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-family:'lucida grande',verdana,helvetica,arial,sans-serif,534E\6587\9ED1\4F53;
 	font-size:90%;
 	margin: 0;
 }
@@ -41,9 +41,8 @@ a {
 	text-decoration: none;
 	font-weight: bold;
 }
-a:hover {
-	color: #323232;
-	text-decoration:underline;
+a h3:hover {
+	color: #FF3232;
 }
 a img {
 	border:none;
@@ -55,7 +54,7 @@ h1, h2, h3, h4 {
 h1 {
 	background:#fff;
 	color: #003d4c;
-	font-size: 200%;
+	font-size: 400%;
 }
 h2 {
 	background:#fff;
@@ -99,8 +98,8 @@ p {
 }
 #header h1 a {
 	color: #fff;
-	font-weight: normal;
-	text-decoration: none;
+	font-weight:bold;
+	text-shadow:5px 5px #A43838;
 }
 #header h1 a:hover {
 	color: #fff;
