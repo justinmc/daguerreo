@@ -6,7 +6,7 @@ class PostsController extends AppController {
 	public function index() {
 	    $this->layout = 'home';
 		
-		$this->set('posts', $this->Post->find('all'));
+		$this->set('posts', $this->Post->find('all', array('order' => 'date DESC')));
 	}
 	
 	public function post($titlePY) {
