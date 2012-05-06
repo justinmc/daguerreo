@@ -23,7 +23,7 @@
 		<td><?= $this->Html->link('Edit', '/admin/editpost/' . $post['Post']['title_py']); ?></td>
 		<td><?= $post['Post']['id']; ?></td>
 		<td><?= $post['Post']['title_cn']; ?></td>
-		<td><?= $post['Post']['date']; ?></td>
+		<td><?= $this->Time->nice($post['Post']['date']); ?></td>
 		<td><?= $this->Html->link('Delete Post', '/admin/deletepost/' . $post['Post']['title_py']); ?></td>
 	</tr>
 	<?php endforeach; ?>

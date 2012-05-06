@@ -118,7 +118,7 @@ class AdminsController extends AppController {
 							'titlepic' => "'{$formdata['titlepic']}'", 
 							'post' => ("'{$formdata['post']}'"));
 			
-	        if ($this->Post->updateAll($dbdata, array('id' => $formdata['id']))) {
+	        if ($this->Post->updateAll($dbdata, array('id' => $formdata['id']))) {	
 	            $this->Session->setFlash("Post successfully edited");
 	        }
 			else {
@@ -128,9 +128,35 @@ class AdminsController extends AppController {
 		$this->redirect('/admin');	
 	}
 
+	// Deletes a post (to deleted table) and redirects
+	public function postdelete () {
+		
+	}
+
 	// Format the title, for url matching purposes
 	private function titleFormat ($unformatted) {
 	
 		return str_replace(' ', '_', preg_replace("/[^a-z0-9 ]/", '', strtolower($unformatted)));
 	}
+	
+	// This should go in the model!
+	private function uploadFile ($_FILES) {
+		
+		$result = 1;
+		if(isset($_FILES['titlepic']) && !empty($_FILES['titlepic']['name'])) {
+			if ($_FILES["titlepic"]["error"] > 0) {
+				$result = "Upload failed: " . $_FILES["titlepic"]["error"][0];
+			}
+			else {
+				if (file_exists("files/" . $_FILES["titlepic"]["name"])) {
+			    	$result = "Upload failed: filename already exists on the server";
+			    }
+			    else {
+			    	move_uploaded_file($_FILES["titlepic"]["tmp_name"], "files/" . $_FILES["titlepic"]["name"]);
+			    }
+			}
+		}
+		return $result;
+	}
+	
 }
