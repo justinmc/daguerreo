@@ -40,12 +40,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<div id="container">
 		<div id="header">
 			<br />
-			<h1><?php echo $this->Html->link('摄影世界', '/'); ?></h1>
-			<?php echo $this->Html->link('游记', '/blog/'); ?>
-			<?php echo $this->Html->link('相册', '/photos/'); ?>
-			<?php echo $this->Html->link('关于', '/about/'); ?>
-			<?php echo $this->Html->link('管理员', '/admin/'); ?>
+			<h1><?php echo $this->Html->link('光影小镇', '/'); ?></h1>
 		</div>
+		
+	<ul id="navbar">
+		<li><?php echo $this->Html->link('游记', '/blog/'); ?></li>
+		<li><?php echo $this->Html->link('相册', '/photos/'); ?></li>
+		<li><?php echo $this->Html->link('关于', '/about/'); ?></li>
+		<li><?php echo $this->Html->link('管理员', '/admin/'); ?></li>
+	</ul>
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
 

@@ -9,12 +9,29 @@
 	width: 9px;
 	list-style-type: none;
 	display: inline;
+	text-align: center;
 }
 #pagination li:hover { 
 	background-color: #FF3232;
 }
 #pagination li.active {
 	background-color: #FF3232;
+}
+
+
+#navbar{
+	background-color:#FF3232;
+	text-align:right;
+}
+#navbar li{
+	display: inline;
+	list-style-type: none;
+	text-align: center;
+	background-color:#FF3232;
+	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-size:150%;
+	font-weight: bold;
+	text-decoration: none;	
 }
 
 
