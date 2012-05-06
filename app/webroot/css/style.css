@@ -6,6 +6,9 @@
 	border: 4px #FF3232 solid;	
 	border-radius:5em;
 	padding:6px;
+	width: 9px;
+	list-style-type: none;
+	display: inline;
 }
 #pagination li:hover { 
 	background-color: #FF3232;
