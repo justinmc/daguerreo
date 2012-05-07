@@ -24,7 +24,7 @@
 		<td><?= $post['Post']['id']; ?></td>
 		<td><?= $post['Post']['title_cn']; ?></td>
 		<td><?= $this->Time->nice($post['Post']['date']); ?></td>
-		<td><?= $this->Html->link('Delete Post', '/admin/deletepost/' . $post['Post']['title_py']); ?></td>
+		<td><?= $this->Html->link('Delete Post', '/admin/deletepost/' . $post['Post']['id']); ?></td>
 	</tr>
 	<?php endforeach; ?>
 </tbody>
