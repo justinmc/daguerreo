@@ -2,6 +2,7 @@
 
 class AdminsController extends AppController {
 	
+	var $components = array('Auth');
 	public $helpers = array('Html', 'Time');
 	
 	public function index() {

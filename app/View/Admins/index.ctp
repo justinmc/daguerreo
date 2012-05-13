@@ -12,4 +12,7 @@
 	<li><?php echo $this->Html->link('Manage existing posts', '/admin/posts/'); ?></li>
 	<li><?php echo $this->Html->link("View edits you've made", '/admin/postedits/'); ?></li>
 	<li><?php echo $this->Html->link('Manage photos', '/admin/photos/'); ?></li>
+	<li><?php echo $this->Html->link('Register new admins', '/users/register/'); ?></li>
 </ul>
+<br /><br />
+<?= $this->Html->link('Logout', '/users/logout/'); ?>
