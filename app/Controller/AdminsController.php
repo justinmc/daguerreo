@@ -10,6 +10,12 @@ class AdminsController extends AppController {
 	    $this->layout = 'home';
 	}
 	
+	public function photos() {
+		
+	    $this->layout = 'home';
+		
+	}
+	
 	public function posts() {
 		
 	    $this->layout = 'home';
