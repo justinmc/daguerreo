@@ -31,4 +31,18 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+	
+	// returns the next id that should be used on an insert into the table
+	public function getNextId () {
+		$highest = $this->find('all', array('fields' => 'MAX(id)'));
+		
+		return (($highest[0][0]['MAX(id)'] == NULL) ? 0 : $highest[0][0]['MAX(id)'] + 1);
+	}
+	
+	// Format the pinyin title, for url matching purposes
+	public function formatTitle ($unformatted) {
+	
+		return str_replace(' ', '_', preg_replace("/[^a-z0-9 ]/", '', strtolower($unformatted)));
+	}
+	
 }

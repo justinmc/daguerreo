@@ -10,5 +10,6 @@
 <ul>
 	<li><?php echo $this->Html->link('Create a new post', '/admin/newpost/'); ?></li>
 	<li><?php echo $this->Html->link('Manage existing posts', '/admin/posts/'); ?></li>
+	<li><?php echo $this->Html->link("View edits you've made", '/admin/postedits/'); ?></li>
 	<li><?php echo $this->Html->link('Manage photos', '/admin/photos/'); ?></li>
 </ul>

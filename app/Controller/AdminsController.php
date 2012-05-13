@@ -1,4 +1,5 @@
 <?php
+
 class AdminsController extends AppController {
 	
 	public $helpers = array('Html', 'Time');
@@ -13,11 +14,9 @@ class AdminsController extends AppController {
 	    $this->layout = 'home';
 		$this->loadModel('Post');
 		
-		$nextId = $this->Post->find('all', array('fields' => 'MAX(id)'));
-		$nextId = $nextId[0][0]['MAX(id)'] + 1;
+		$nextId = $this->Post->getNextId();
 		
-		$posts = $this->Post->find('all', array('fields' => array('id', 'title_cn', 'title_py', 'date'), 'order' => 'date DESC'));
-		// you really want to get only non deleted posts: select posts.title_cn from posts left join deletions on posts.id = deletions.posts_id where deletions.posts_id is null;
+		$posts = $this->Post->findNotDeleted(array('id', 'title_cn', 'title_py', 'date'));
 		
 		$this->set(array('nextId' => $nextId, 'posts' => $posts));
 	}
@@ -27,10 +26,7 @@ class AdminsController extends AppController {
 	    $this->layout = 'home';
 		$this->loadModel('Post');
 		
-		//$this->Post->add();
-		
-		$nextId = $this->Post->find('all', array('fields' => 'MAX(id)'));
-		$nextId = $nextId[0][0]['MAX(id)'] + 1;
+		$nextId = $this->Post->getNextId();
 		
 		$this->set(array('nextId' => $nextId));
 	}
@@ -45,6 +41,18 @@ class AdminsController extends AppController {
 		$this->set(array('post' => $post));
 	}
 	
+	public function postedits() {
+		
+	    $this->layout = 'home';
+		$this->loadModel('Edits');
+		
+		$edits = $this->Edits->find('all', array(
+			'fields' => array('posts_id', 'date', 'field', 'value_old', 'value_new'),
+			'order' => 'posts_id'));
+		
+		$this->set(array('edits' => $edits));
+	}
+	
 	public function deletepost($postsid) {
 		
 		$this->loadModel('Deletions');
@@ -52,49 +60,89 @@ class AdminsController extends AppController {
 	    if ($this->Deletions->deletePost($postsid))
 			$this->Session->setFlash("Post successfully deleted");
 		else 
-			$this->Session->setFlash("Delete failed - record already exists");
+			$this->Session->setFlash("Delete failed - delete record already exists");
 
 		$this->redirect('/admin');
 	}
 
-	// Updates a post in the database
-	public function postedit () {
+	// Add or edit a post in the database
+	public function postsedit () {
 		
 		$this->loadModel('Post');
+		$this->loadModel('Edits');
 
 		// Has any form data been POSTed?
     	if ($this->request->is('post')) {
     		
 			$formdata = $this->request->data;
 			
-			if(isset($_FILES['titlepic']) && !empty($_FILES['titlepic']['name'])) {
-				$uploadResult = $this->Post->uploadFile($_FILES);
-				if (!$uploadResult) {
-					$this->Session->setFlash("Post edit failed: " . $uploadResult);
-					$this->redirect('/admin');
-				}
-				else {
-					$formdata['titlepic'] = "files/" . $_FILES["titlepic"]["name"];
-				}
+			// Are we adding a new post, or editing an old one?
+			$errorTitle;
+			$addPost;
+			if ($formdata['id'] == $this->Post->getNextId()) {
+				$errorTitle = "New post";
+				$addPost = 1;
 			}
 			else {
-				$formdata['titlepic'] = $formdata['original_titlepic'];
+				$errorTitle = "Post edit";
+				$addPost = 0;
 			}
 			
-	        if ($this->Post->edit($formdata, $_FILES)) {	
-	            $this->Session->setFlash("Post successfully edited");
-	        }
-			else {
-				$this->Session->setFlash("Post edit failed");
+			// Upload a file if needed
+			$uploadResult = $this->uploadIfFile($_FILES);
+			if ($uploadResult == 1) {
+				$formdata['titlepic'] = "files/" . $_FILES["titlepic"]["name"];
 			}
-    	}
-		$this->redirect('/admin');
-	}
+			else if ($uploadResult == 0) {
+				$formdata['titlepic'] = $formdata['original_titlepic'];
+			}
+			else {
+				$this->Session->setFlash($errorTitle . " failed: " . $uploadResult);
+				$this->redirect('/admin/editpost/' . $formdata['original_title_py']);
+			}
 
-	// Format the title, for url matching purposes
-	private function titleFormat ($unformatted) {
+			// And send the data to the database
+			$success;
+			if ($addPost){
+				$success = $this->Post->add($formdata);
+			}
+			else {
+				$olddata = $this->Post->find('first', array(
+					'conditions' => array(
+						'id' => $formdata['id']
+						),
+					'fields' => array('id', 'title_cn', 'title_py', 'titlepic', 'post')
+					)
+				);
+				$success = $this->Edits->add($formdata, $olddata['Post']);
+				if ($success)
+					$success = $success && $this->Post->edit($formdata);
+			}
+			if ($success) {
+		        $this->Session->setFlash($errorTitle . " successful");
+		    }
+			else {
+				$this->Session->setFlash($errorTitle . " failed: problem writing to database");
+			}
+		}
+		else {
+			$this->Session->setFlash("Submission failed: no information received");
+		}
+		$this->redirect('/admin');
+    }
 	
-		return str_replace(' ', '_', preg_replace("/[^a-z0-9 ]/", '', strtolower($unformatted)));
+	// Uploads a file in $_FILES, returns 1 on success, 0 on no file, error on failure
+	private function uploadIfFile ($_FILES) {
+		if(isset($_FILES['titlepic']) && !empty($_FILES['titlepic']['name'])) {
+			$uploadResult = $this->Post->uploadFile($_FILES);
+			if (!$uploadResult) {
+				return $uploadResult;
+			}
+			else {
+				return 1;
+			}
+		}
+		return 0;
 	}
 	
 }

@@ -1,6 +1,6 @@
 <h2>Edit Post</h2>
 <br />
-<form name="addPost" action="/admin/postedit" method="post" enctype="multipart/form-data">
+<form name="addPost" action="/admin/postsedit" method="post" enctype="multipart/form-data">
 	<table>
 	<tbody>
 		<tr>
@@ -17,7 +17,7 @@
 			</td>
 			<td>
 				<input type="datetime" name="displayonly" disabled="disabled" value="<? echo $this->Time->nice($post['Post']['date']); ?>" />
-				<input type="datetime" name="date" readonly="readonly" hidden="hidden" value="<? echo time(); ?>" />
+				<input type="datetime" name="edited" readonly="readonly" hidden="hidden" value="<? echo time(); ?>" />
 			</td>
 		</tr>
 		<tr>

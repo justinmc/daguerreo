@@ -35,6 +35,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('script');
 	?>
 	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -45,6 +46,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		
 	<ul id="navbar">
 		<li><?php echo $this->Html->link('游记', '/blog/'); ?></li>
+		<li><?php echo $this->Html->link('Archive', '/archive/'); ?></li>
 		<li><?php echo $this->Html->link('相册', '/photos/'); ?></li>
 		<li><?php echo $this->Html->link('关于', '/about/'); ?></li>
 		<li><?php echo $this->Html->link('管理员', '/admin/'); ?></li>

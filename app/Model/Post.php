@@ -2,21 +2,43 @@
 
 class Post extends AppModel {
 	
+	// finds all posts that haven't been deleted
+	public function findNotDeleted ($fields) {
+		
+		return $this->find('all', array(
+			'fields' => $fields, 
+			'order' => 'date DESC',
+			'conditions' => array('deletions.posts_id is null'), 
+			'joins' => array(
+				array(
+					'table' => 'deletions',
+					'type' => 'LEFT',
+					'conditions' => array(
+						'Post.id = deletions.posts_id')
+					)
+			)
+		));
+	}
+	
 	// updates a post in the database
 	// returns 1 on success, 0 on failure
-	public function edit ($formdata, $_FILES) {	
-			
-		$formdata['title_cn'] = addslashes($formdata['title_cn']);
-		$formdata['title_py'] = $this->titleFormat($formdata['title_py']);
-		$formdata['post'] = addslashes($formdata['post']);
-		
-		$dbdata = array('title_cn' => "'{$formdata['title_cn']}'", 
-						'title_py' => "'{$formdata['title_py']}'",
-						'date' => $formdata['date'], 
-						'titlepic' => "'{$formdata['titlepic']}'", 
-						'post' => ("'{$formdata['post']}'"));
+	public function edit ($formdata) {		
+		$dbdata = $this->formatPost($formdata);
 		
         if ($this->updateAll($dbdata, array('id' => $formdata['id']))) {	
+            return 1;
+        }
+		else {
+			return 0;
+		}
+	}
+	
+	// adds a post to the database
+	// returns 1 on success, 0 on failure
+	public function add ($formdata) {		
+		$dbdata = $this->formatPost($formdata);
+		
+		if ($this->save($dbdata)) {	
             return 1;
         }
 		else {
@@ -46,9 +68,30 @@ class Post extends AppModel {
 		return $result;
 	}
 
-	// Format the pinyin title, for url matching purposes
-	private function titleFormat ($unformatted) {
-	
-		return str_replace(' ', '_', preg_replace("/[^a-z0-9 ]/", '', strtolower($unformatted)));
+	// Takes an array of form data, formats it for db entry
+	private function formatPost ($unformatted) {
+		$unformatted['title_cn'] = addslashes($unformatted['title_cn']);
+		$unformatted['title_py'] = $this->formatTitle($unformatted['title_py']);
+		$unformatted['post'] = addslashes($unformatted['post']);
+		
+		// Must have apostrophes on strings if we're editing, otherwise leave it alone
+		$formatted;
+		if ($unformatted['id'] == $this->getNextId()) {
+			$formatted = array('id' => $unformatted['id'],
+						'title_cn' => $unformatted['title_cn'], 
+						'title_py' => $unformatted['title_py'],
+						'date' => $unformatted['date'], 
+						'titlepic' => $unformatted['titlepic'], 
+						'post' => $unformatted['post']);
+		}
+		else {
+			$formatted = array('id' => $unformatted['id'],
+						'title_cn' => "'{$unformatted['title_cn']}'", 
+						'title_py' => "'{$unformatted['title_py']}'",
+						'titlepic' => "'{$unformatted['titlepic']}'", 
+						'post' => ("'{$unformatted['post']}'"));
+		}
+						
+		return $formatted;
 	}
 }

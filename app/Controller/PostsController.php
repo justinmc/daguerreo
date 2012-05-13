@@ -6,15 +6,28 @@ class PostsController extends AppController {
 	public function index() {
 	    $this->layout = 'home';
 		
-		$this->set('posts', $this->Post->find('all', array('order' => 'date DESC')));
+		$posts = $this->Post->findNotDeleted(array('id', 'title_cn', 'title_py', 'date', 'titlepic', 'post'));
+		
+		$this->set('posts', $posts);
 	}
 	
 	public function post($titlePY) {
 		$this->layout = 'home';
 		
-		$conditions = array('title_py' => strtolower($titlePY));
-		$post = $this->Post->find('first', array('conditions' => $conditions));
+		$post = $this->Post->find('first', array(
+			'conditions' => array(
+				'title_py' => strtolower($titlePY)
+				)
+			));
 		
 		$this->set('post', $post);
+	}
+	
+	public function archive() {
+		$this->layout = 'home';
+		
+		$posts = $this->Post->findNotDeleted(array('id', 'title_cn', 'title_py', 'date'));
+		
+		$this->set('posts', $posts);
 	}
 }

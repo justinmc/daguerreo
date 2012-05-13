@@ -1,6 +1,6 @@
 <h2>Create a New Post</h2>
 <br />
-<form name="addPost" action="/admin/postadd" method="post" enctype="multipart/form-data">
+<form name="addPost" action="/admin/postsedit" method="post" enctype="multipart/form-data">
 	<table>
 	<tbody>
 		<tr>

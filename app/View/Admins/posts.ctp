@@ -24,8 +24,24 @@
 		<td><?= $post['Post']['id']; ?></td>
 		<td><?= $post['Post']['title_cn']; ?></td>
 		<td><?= $this->Time->nice($post['Post']['date']); ?></td>
-		<td><?= $this->Html->link('Delete Post', '/admin/deletepost/' . $post['Post']['id']); ?></td>
+		<td><a href="#" class="click_delete" data-link="<?= ('/admin/deletepost/' . $post['Post']['id']) ?>">Delete Post</a></td>
 	</tr>
 	<?php endforeach; ?>
 </tbody>
 </table>
+
+<script type="text/javascript">
+	
+$(document).ready(function () {
+	
+	$(".click_delete").click(function () {
+		var deletepost = confirm('This will permanently delete your post.  Are you sure?');
+				
+		if (deletepost)
+			window.location = $(this).data('link');
+		else
+			return false;
+	});
+});
+	
+</script>
