@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * 
+ * todo:
+ * move api connection info to Config folder
+ * split adminsphotos adminsposts
+ * edit album weird error?
+ * 
+ */
+
 class AdminsController extends AppController {
 	
 	var $components = array('Auth');
@@ -13,7 +22,34 @@ class AdminsController extends AppController {
 	public function photos() {
 		
 	    $this->layout = 'home';
+		$this->loadModel('Photo');
 		
+		$conn = $this->Photo->connect(); 
+		
+		 //Lets go ahead and create container. 
+		 //$cont = $conn->create_container('peru');
+		 //Now lets make a new Object
+		 //$obj  = $cont->create_object('CIMG3670.JPG');
+		 //Now lets put some stuff into the Object =)
+		 //$obj->write('LetsPutSomeDataHere');
+
+		$conts = $conn->get_containers();
+
+		$this->set(array('conts' => $conts));
+	}
+	
+	public function photosedit ($contName) {
+			
+		$this->layout = 'home';
+		$this->loadModel('Photo');
+		
+		$conn = $this->Photo->connect();
+		
+		$cont = $conn->get_container($contName);
+		$pics = $cont->get_objects();
+		die(var_export($pics));
+		
+		$this->set(array('cont' => $cont, 'pics' => $pics));
 	}
 	
 	public function posts() {
