@@ -19,9 +19,9 @@
 					<img height="100" width="150" src="<?php echo $firstPicLink; ?>" />
 				</a>
 				<a href="<?php echo '/photos/' . $cont->name; ?>">
-					<span class="name"><? $cont->name ?></span>
+					<span class="name"><?php echo $cont->name; ?></span>
 				</a>
-				<br /><br />
+				<br />
 				<span class="photocount">
 					Photos: <?= $cont->object_count; ?>
 				</span>
