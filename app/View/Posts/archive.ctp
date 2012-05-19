@@ -1,9 +1,9 @@
 <table>
 <tbody>
 	<tr>
-		<th>id</th>
-		<th>title</th>
-		<th>date</th>
+		<th>编号 Id</th>
+		<th>题目 Title</th>
+		<th>日期 Date</th>
 	</tr>
 	<?php foreach ($posts as $post): ?>
 	<tr>
