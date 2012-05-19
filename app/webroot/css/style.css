@@ -81,7 +81,7 @@ div.album img {
 
 /** General Style Info **/
 body {
-	background: #afafaf;
+	background: #EAE1E1;
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif,534E\6587\9ED1\4F53;
 	font-size:90%;
@@ -104,7 +104,7 @@ h1, h2, h3, h4 {
 }
 h1 {
 	color: #003d4c;
-	font-size: 400%;
+	font-size: 300%;
 }
 h2 {
 	background:#fff;
