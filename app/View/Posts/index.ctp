@@ -10,13 +10,15 @@
 <br /><br />
 <?php endforeach; ?>
 <br />
-<ul id="pagination">
-<?php
-
-echo $this->Paginator->numbers(array( 
-	'separator' => '',
-	'tag' => 'li'
-));
-
-?>
-</ul>
+<div class="centerme">
+	<ul id="pagination">
+	<?php
+	
+	echo $this->Paginator->numbers(array( 
+		'separator' => '',
+		'tag' => 'li'
+	));
+	
+	?>
+	</ul>
+</div>

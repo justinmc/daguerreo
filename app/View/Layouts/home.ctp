@@ -45,13 +45,28 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<div id="header">
 				<br />
 				<h1><?php echo $this->Html->link('光影小镇 Shadow Town', '/'); ?></h1>
-				<ul id="navbar">
-					<li><?php echo $this->Html->link('博客Blog', '/blog/'); ?></li>
-					<li><?php echo $this->Html->link('文档Archive', '/archive/'); ?></li>
-					<li><?php echo $this->Html->link('相册Album', '/photos/'); ?></li>
-					<li><?php echo $this->Html->link('关于About', '/about/'); ?></li>
-					<li><?php echo $this->Html->link('管理员Admin', '/admin/'); ?></li>
-				</ul>
+				<div id="navbar">
+						<div id="blog">
+							<?php echo $this->Html->link('博客', '/blog/'); ?><br />
+							<?php echo $this->Html->link('Blog', '/blog/'); ?>
+						</div>
+						<div id="archive">
+						<?php echo $this->Html->link('文档', '/archive/'); ?><br/>
+						<?php echo $this->Html->link('Archive', '/archive/'); ?>
+						</div>
+						<div id="photos">
+						<?php echo $this->Html->link('相册', '/photos/'); ?><br/>
+						<?php echo $this->Html->link('Album', '/photos/'); ?>
+						</div>
+						<div id="about">
+						<?php echo $this->Html->link('关于', '/about/'); ?><br/>
+						<?php echo $this->Html->link('About', '/about/'); ?>
+						</div>
+						<div id="admin">
+						<?php echo $this->Html->link('管理员', '/admin/'); ?><br/>
+						<?php echo $this->Html->link('Admin', '/admin/'); ?>	
+						</div>
+				</div>
 			</div>
 		</div>
 		<div id="container_center">
