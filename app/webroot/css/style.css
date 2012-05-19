@@ -9,9 +9,18 @@
 }
 
 #container_center {
+	overflow: auto;
 	text-align: left;
 	margin: 0 auto;
 	width: 80%;
+	height: auto;
+}
+
+#container_center #rightbar {
+	background: transparent;
+	padding: 8px;
+	float: left;
+	width: 14%;
 	height: auto;
 }
 
@@ -72,7 +81,7 @@ div.album img {
 
 /** General Style Info **/
 body {
-	background: #FFFFFF;
+	background: #afafaf;
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif,534E\6587\9ED1\4F53;
 	font-size:90%;
@@ -148,6 +157,9 @@ p {
 	text-decoration: none;
 }
 #content{
+	background: #FFFFFF;
+	width: 80%;
+	float: left;
 	clear: both;
 	color: #333;
 	padding: 10px 20px 40px 20px;
