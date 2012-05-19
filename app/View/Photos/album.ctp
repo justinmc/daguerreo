@@ -1,6 +1,6 @@
 <a href="/photos"><h3>Photos</h3></a>
 <br />
-<h4><? $title ?></h4>
+<h4><?php echo $title; ?></h4>
 <table class="nolines">
 <tbody>
 	<tr>

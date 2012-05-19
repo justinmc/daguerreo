@@ -27,7 +27,12 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
+	?>
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+	
+	<?php
 		echo $this->Html->css('style');
 		echo $this->Html->css('lightbox');
 		echo $this->Html->script('lightbox');
@@ -36,8 +41,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
-	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 </head>
 <body>
 	<div id="container">

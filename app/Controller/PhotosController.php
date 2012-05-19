@@ -22,7 +22,7 @@ class PhotosController extends AppController {
 		$cont = $conn->get_container($album);
 		
 		$photos = $cont->list_objects();
-		$title = "lol"; //$cont->name;
+		$title = str_replace('daguerreo_', '', $cont->name);
 		$cdn_uri = $cont->cdn_uri;
 
 		$this->set(array('photos' => $photos, 'cdn_uri' => $cdn_uri, 'title' => $title));
