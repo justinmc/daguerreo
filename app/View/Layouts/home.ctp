@@ -41,8 +41,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 </head>
 <body>
 	<div id="container">
-		<div id="header_bg"></div>
-		<div id="container_center">
+		<div id="header_bg">
 			<div id="header">
 				<br />
 				<h1><?php echo $this->Html->link('光影小镇 Shadow Town', '/'); ?></h1>
@@ -54,17 +53,19 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<li><?php echo $this->Html->link('管理员Admin', '/admin/'); ?></li>
 				</ul>
 			</div>
-			
+		</div>
+		<div id="container_center">
 			<div id="content">
 				<?php echo $this->Session->flash(); ?>
 	
 				<?php echo $this->fetch('content'); ?>
 			</div>
+		</div>
+		<div id="footer_bg">
 			<div id="footer">
 				Copyright <?php echo date('Y'); ?> Bella's Mom
-			</div>	
+			</div>
 		</div>
-		<div id="footer_bg"></div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
