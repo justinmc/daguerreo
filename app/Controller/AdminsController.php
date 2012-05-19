@@ -25,13 +25,6 @@ class AdminsController extends AppController {
 		$this->loadModel('Photo');
 		
 		$conn = $this->Photo->connect(); 
-		
-		 //Lets go ahead and create container. 
-		 //$cont = $conn->create_container('peru');
-		 //Now lets make a new Object
-		 //$obj  = $cont->create_object('CIMG3670.JPG');
-		 //Now lets put some stuff into the Object =)
-		 //$obj->write('LetsPutSomeDataHere');
 
 		$cont = $conn->get_containers("daguerreo");
 		$conts = $this->Photo->getPrefixContainers($conn, 'daguerreo_');
@@ -39,21 +32,108 @@ class AdminsController extends AppController {
 		$this->set(array('conts' => $conts));
 	}
 	
-	public function photosedit ($contName) {
+	public function photosedit ($albumName) {
 
 		$this->layout = 'home';
 		$this->loadModel('Photo');
 		
 		$conn = $this->Photo->connect();
-
-		$cont = $conn->get_container($contName);
-		$pics = $cont->get_objects(2);
-	
-		die(var_export($pics));
-	
-	
+		$cont = $conn->get_container('daguerreo_' . $albumName);
 		
-		$this->set(array('cont' => $cont, 'pics' => $pics));
+		$photos = $cont->list_objects();
+		$title = str_replace('daguerreo_', '', $cont->name);
+		$cdn_uri = $cont->cdn_uri;
+
+		$this->set(array('photos' => $photos, 'cdn_uri' => $cdn_uri, 'title' => $title));
+	}
+	
+	public function newphoto () {
+			
+		$this->loadModel('Photo');
+		
+		// Has any form data been POSTed?
+    	if ($this->request->is('post')) {
+    		
+			$formdata = $this->request->data;
+			
+			// Check the file and write it to cloud files
+			if(isset($_FILES['photo']) && !empty($_FILES['photo']['name'])) {
+				if ($_FILES["photo"]["error"] > 0) {
+					$this->Session->setFlash("Photo add failed: " . $_FILES["photo"]["error"][0]);
+					$this->redirect('/admin/photos/' . $formdata['albumName']);
+				}
+				else {
+					if (file_exists("files/tmp/" . $_FILES["photo"]["name"])) {
+				    	$this->Session->setFlash("Photo add failed: filename already exists on the web server");
+						$this->redirect('/admin/photos/' . $formdata['albumName']);
+				    }
+				    else {
+				    	
+						move_uploaded_file($_FILES["photo"]["tmp_name"], "files/tmp/" . $_FILES["photo"]["name"]);
+						$bytes = filesize("files/tmp/" . $_FILES["photo"]["name"]);
+						$file = fopen("files/tmp/" . $_FILES["photo"]["name"], "r");
+						
+						// create the cloud files object
+						$conn = $this->Photo->connect();
+				    	$cont = $conn->get_container('daguerreo_' . $formdata['albumName']);
+				    	$obj = $cont->create_object($_FILES["photo"]["name"]);
+						
+						// write to cloud files!
+						$result = $obj->write($file, $bytes);
+						
+						// delete the uploaded file from our server to save space
+						unlink("files/tmp/" . $_FILES["titlepic"]["name"]);
+						
+				    	if ($result != TRUE) {
+				    		$this->Session->setFlash("Photo add failed: could not write to Cloud Files");
+							$this->redirect('/admin/photos/' . $formdata['albumName']);
+						}
+						else {
+							$this->Session->setFlash("Photo added successfully");
+						}
+				    }
+				}
+			}
+			else {
+				$this->Session->setFlash("Photo add failed: file not received");
+				$this->redirect('/admin/photos/' . $formdata['albumName']);
+			}
+		}
+		else {
+			$this->Session->setFlash("Photo add failed: no data received");
+			$this->redirect('/admin/photos/' . $formdata['albumName']);
+		}
+		
+		$this->redirect('/admin/photos/' . $formdata['albumName']);
+	}
+	
+	public function deletephoto ($albumName, $photoName) {
+		
+		$this->loadModel('Photo');
+		
+		$conn = $this->Photo->connect();
+		$cont = $conn->get_container('daguerreo_' . $albumName);
+		
+		if ($cont->delete_object($photoName))
+			$this->Session->setFlash("Successfully deleted photo " . $photoName);
+		else
+			$this->Session->setFlash("Failed to delete photo " . $photoName);
+		
+		$this->redirect('/admin/photos/' . $albumName);
+	}
+	
+	public function newalbum ($albumName) {
+		
+		 //Lets go ahead and create container. 
+		 //$cont = $conn->create_container('peru');
+		 //Now lets make a new Object
+		 //$obj  = $cont->create_object('CIMG3670.JPG');
+		 //Now lets put some stuff into the Object =)
+		 //$obj->write('LetsPutSomeDataHere');
+		 
+		 $this->Session->setFlash("Failed to create album" . $albumName);
+		
+		$this->redirect('/admin/photos/');
 	}
 	
 	public function posts() {
@@ -175,7 +255,7 @@ class AdminsController extends AppController {
 		else {
 			$this->Session->setFlash("Submission failed: no information received");
 		}
-		$this->redirect('/admin');
+		$this->redirect('/admin/posts/');
     }
 	
 	// Uploads a file in $_FILES, returns 1 on success, 0 on no file, error on failure

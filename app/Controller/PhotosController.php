@@ -19,7 +19,7 @@ class PhotosController extends AppController {
 		$this->loadModel('Photo');
 		
 		$conn = $this->Photo->connect();
-		$cont = $conn->get_container($album);
+		$cont = $conn->get_container('daguerreo_' . $album);
 		
 		$photos = $cont->list_objects();
 		$title = str_replace('daguerreo_', '', $cont->name);
