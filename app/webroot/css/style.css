@@ -1,6 +1,14 @@
 /* 
  * Custom Style
  */
+.post {
+	color: #B6B6B6;
+	font-size: 100%;
+}
+.centerme {
+	text-align: center;
+	width:100%;
+}
 
 #header_bg {
 	width: 100%;
@@ -40,14 +48,14 @@
 }
 
 #pagination li {
-	border: 4px #FF3232 solid;	
+	border: 5px #FF3232 solid;	
 	border-radius:5em;
-	padding:6px;
-	width: 9px;
+	padding:10px;
+	width: 12px;
 	list-style-type: none;
 	display: inline;
 	text-align: center;
-	margin-right: 6px;
+	margin-right: 8px;
 }
 #pagination li:hover { 
 	background-color: #FF3232;
@@ -56,20 +64,52 @@
 	background-color: #FF3232;
 }
 
-
-#navbar{
-	text-align:right;
-}
-#navbar li{
-	display: inline;
+#navbar {
+	float: right;
 	list-style-type: none;
 	text-align: center;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
-	font-size:150%;
+	font-size:120%;
 	font-weight: bold;
-	text-decoration: none;	
+	text-decoration: none;
+}
+#blog {
+	float: left;
+	margin-right: 20px;
+}
+#blog a:hover {
+	color: #FFFFFF;
 }
 
+#archive {
+	float: left;
+	margin-right: 20px;
+}
+#archive a:hover {
+	color: #FFFFFF;
+}
+#photos {
+	float: left;
+	margin-right: 20px;
+}
+#photos a:hover {
+	color:#FFFFFF;
+}
+
+#about {
+	float: left;
+	margin-right: 20px;
+}
+#about a:hover {
+	color: #FFFFFF;
+}
+#admin {
+	float: left;
+	margin-right: 20px;
+}
+#admin a:hover {
+	color: #FFFFFF;
+}
 table.nolines tr {
 	background: transparent;
 }
@@ -95,7 +135,7 @@ body {
 	background: #EAE1E1;
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif,534E\6587\9ED1\4F53;
-	font-size:90%;
+	font-size:100%;
 	margin: 0;
 }
 a {
@@ -177,6 +217,7 @@ p {
 	color: #333;
 	padding: 10px 20px 40px 20px;
 	overflow: auto;
+	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 }
 #footer {
 	width: 80%;

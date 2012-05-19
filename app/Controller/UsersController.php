@@ -42,18 +42,18 @@ class UsersController extends AppController {
 			);
 			
 			if ($this->Auth->login($formdata)) { // $this->Auth->isAuthorized
-				$this->Session->setFlash("Login successful");
+				$this->Session->setFlash("成功登入 Login successful");
 				$this->redirect('/admin/');
 			}
 			else {
-				$this->Session->setFlash("Login failed: no such user/password pair");
+				$this->Session->setFlash("登入失败：无此用户／密码 Login failed: no such user/password pair");
 			}
 		}
     }
  
     function logout() {
     	
-		$this->Session->setFlash("You have successfully logged out");
+		$this->Session->setFlash("您已成功退出 You have successfully logged out");
     	$this->redirect($this->Auth->logout());
     }
 	
@@ -75,7 +75,7 @@ class UsersController extends AppController {
 			
 			$this->Users->save($dbdata);
 			
-			$this->Session->setFlash("User registration successful");
+			$this->Session->setFlash("用户注册成功 User registration successful");
 			$this->redirect('/admin/');
 		}
 		
