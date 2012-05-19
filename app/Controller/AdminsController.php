@@ -105,9 +105,9 @@ class AdminsController extends AppController {
 		$this->loadModel('Deletions');
 		
 	    if ($this->Deletions->deletePost($postsid))
-			$this->Session->setFlash("Post successfully deleted");
+			$this->Session->setFlash("成功删除博客 Post successfully deleted");
 		else 
-			$this->Session->setFlash("Delete failed - delete record already exists");
+			$this->Session->setFlash("删除失败－已存在该删除纪录 Delete failed - delete record already exists");
 
 		$this->redirect('/admin');
 	}
@@ -166,14 +166,14 @@ class AdminsController extends AppController {
 					$success = $success && $this->Post->edit($formdata);
 			}
 			if ($success) {
-		        $this->Session->setFlash($errorTitle . " successful");
+		        $this->Session->setFlash($errorTitle . " 成功 successful");
 		    }
 			else {
-				$this->Session->setFlash($errorTitle . " failed: problem writing to database");
+				$this->Session->setFlash($errorTitle . " 失败：录入数据库问题 failed: problem writing to database");
 			}
 		}
 		else {
-			$this->Session->setFlash("Submission failed: no information received");
+			$this->Session->setFlash("输入失败：没有收到到信息 Submission failed: no information received");
 		}
 		$this->redirect('/admin');
     }

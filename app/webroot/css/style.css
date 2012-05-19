@@ -1,6 +1,10 @@
 /* 
  * Custom Style
  */
+.post {
+	color: #B6B6B6;
+	font-size: 100%;
+}
 .centerme {
 	text-align: center;
 	width:100%;
@@ -131,7 +135,7 @@ body {
 	background: #EAE1E1;
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif,534E\6587\9ED1\4F53;
-	font-size:90%;
+	font-size:100%;
 	margin: 0;
 }
 a {
@@ -213,6 +217,7 @@ p {
 	color: #333;
 	padding: 10px 20px 40px 20px;
 	overflow: auto;
+	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 }
 #footer {
 	width: 80%;
