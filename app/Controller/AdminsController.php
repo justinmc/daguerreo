@@ -34,9 +34,7 @@ class AdminsController extends AppController {
 		 //$obj->write('LetsPutSomeDataHere');
 
 		$cont = $conn->get_containers("daguerreo");
-		$lol = $cont->list_objects(0, null, null, 'ui/');
-		
-		die(var_export($lol));
+		$conts = $this->Photo->getPrefixContainers($conn, 'daguerreo_');
 
 		$this->set(array('conts' => $conts));
 	}

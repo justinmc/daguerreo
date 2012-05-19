@@ -1,4 +1,7 @@
 <a href="/photos"><h3>Photos</h3></a>
+<p>
+	Select an album below to view individual photos.
+</p>
 <table class="nolines">
 <tbody>
 	<tr>
@@ -15,11 +18,11 @@
 			$firstPicLink = $cont->cdn_uri . '/' . $firstPic[0];
 			?>
 			<div class="album">
-				<a href="<?php echo '/photos/' . $cont->name; ?>">
+				<a href="<?php echo '/photos/' . str_replace('daguerreo_', '', $cont->name);; ?>">
 					<img height="100" width="150" src="<?php echo $firstPicLink; ?>" />
 				</a>
-				<a href="<?php echo '/photos/' . $cont->name; ?>">
-					<span class="name"><?php echo $cont->name; ?></span>
+				<a href="<?php echo '/photos/' . str_replace('daguerreo_', '', $cont->name);; ?>">
+					<span class="name"><?php echo str_replace('daguerreo_', '', $cont->name);; ?></span>
 				</a>
 				<br />
 				<span class="photocount">
