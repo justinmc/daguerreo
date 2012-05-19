@@ -9,14 +9,14 @@
 </p>
 <br /><br />
 <?php endforeach; ?>
-
 <br />
 <ul id="pagination">
-<a href="#"><li class="inactive">1</li></a>
-<a href="#"><li class="active">2</li></a>
-<a href="#"><li class="inactive">3</li></a>
-</ul>
-<br /><br />
 <?php
-echo $this->Paginator->numbers(array('first' => 'First page'));
+
+echo $this->Paginator->numbers(array( 
+	'separator' => '',
+	'tag' => 'li'
+));
+
 ?>
+</ul>

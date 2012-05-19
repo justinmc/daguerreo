@@ -10,11 +10,12 @@
 	list-style-type: none;
 	display: inline;
 	text-align: center;
+	margin-right: 6px;
 }
 #pagination li:hover { 
 	background-color: #FF3232;
 }
-#pagination li.active {
+#pagination li.current {
 	background-color: #FF3232;
 }
 

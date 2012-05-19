@@ -19,8 +19,9 @@ class PostsController extends AppController {
 					'type' => 'LEFT',
 					'conditions' => array(
 						'Post.id = deletions.posts_id')
-					)
-			)
+				)
+			),
+			'limit' => 3
     );
 	
 	public function index() {

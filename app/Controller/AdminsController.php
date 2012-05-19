@@ -39,15 +39,18 @@ class AdminsController extends AppController {
 	}
 	
 	public function photosedit ($contName) {
-			
+
 		$this->layout = 'home';
 		$this->loadModel('Photo');
 		
 		$conn = $this->Photo->connect();
-		
+
 		$cont = $conn->get_container($contName);
-		$pics = $cont->get_objects();
+		$pics = $cont->get_objects(2);
+	
 		die(var_export($pics));
+	
+	
 		
 		$this->set(array('cont' => $cont, 'pics' => $pics));
 	}
