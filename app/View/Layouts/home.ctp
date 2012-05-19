@@ -41,26 +41,30 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<br />
-			<h1><?php echo $this->Html->link('光影小镇 Shadow Town', '/'); ?></h1>
+		<div id="header_bg"></div>
+		<div id="container_center">
+			<div id="header">
+				<br />
+				<h1><?php echo $this->Html->link('光影小镇 Shadow Town', '/'); ?></h1>
+				<ul id="navbar">
+					<li><?php echo $this->Html->link('博客Blog', '/blog/'); ?></li>
+					<li><?php echo $this->Html->link('文档Archive', '/archive/'); ?></li>
+					<li><?php echo $this->Html->link('相册Album', '/photos/'); ?></li>
+					<li><?php echo $this->Html->link('关于About', '/about/'); ?></li>
+					<li><?php echo $this->Html->link('管理员Admin', '/admin/'); ?></li>
+				</ul>
+			</div>
+			
+			<div id="content">
+				<?php echo $this->Session->flash(); ?>
+	
+				<?php echo $this->fetch('content'); ?>
+			</div>
+			<div id="footer">
+				Copyright <?php echo date('Y'); ?> Bella's Mom
+			</div>	
 		</div>
-		
-	<ul id="navbar">
-		<li><?php echo $this->Html->link('博客Blog', '/blog/'); ?></li>
-		<li><?php echo $this->Html->link('文档Archive', '/archive/'); ?></li>
-		<li><?php echo $this->Html->link('相册Album', '/photos/'); ?></li>
-		<li><?php echo $this->Html->link('关于About', '/about/'); ?></li>
-		<li><?php echo $this->Html->link('管理员Admin', '/admin/'); ?></li>
-	</ul>
-		<div id="content">
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			Copyright <?php echo date('Y'); ?> Bella's Mom
-		</div>
+		<div id="footer_bg"></div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
