@@ -10,7 +10,7 @@
 	</tr>
 	<tr>
 		<td>上传新照片 Upload New Photo
-			<form enctype="multipart/form-data" method="post" action="/admin/newphoto/" name="addPost">
+			<form enctype="multipart/form-data" method="post" action="/admin/newphoto/" name="addPhoto">
 			<input type="text" hidden="hidden" value="<?= $title ?>" readonly="readonly" name="albumName">
 			<input type="file" name="photo">
 			<br />

@@ -82,7 +82,7 @@ class AdminsController extends AppController {
 						$result = $obj->write($file, $bytes);
 						
 						// delete the uploaded file from our server to save space
-						unlink("files/tmp/" . $_FILES["titlepic"]["name"]);
+						unlink("files/tmp/" . $_FILES["photo"]["name"]);
 						
 				    	if ($result != TRUE) {
 				    		$this->Session->setFlash("Photo add failed: could not write to Cloud Files");
@@ -122,16 +122,60 @@ class AdminsController extends AppController {
 		$this->redirect('/admin/photos/' . $albumName);
 	}
 	
-	public function newalbum ($albumName) {
+	public function newalbum () {
 		
-		 //Lets go ahead and create container. 
-		 //$cont = $conn->create_container('peru');
-		 //Now lets make a new Object
-		 //$obj  = $cont->create_object('CIMG3670.JPG');
-		 //Now lets put some stuff into the Object =)
-		 //$obj->write('LetsPutSomeDataHere');
-		 
-		 $this->Session->setFlash("Failed to create album" . $albumName);
+		$this->loadModel('Photo');
+		
+		// Has any form data been POSTed?
+    	if ($this->request->is('post')) {
+    		
+			$formdata = $this->request->data;
+			
+			if ($formdata['albumName']) {
+				$conn = $this->Photo->connect();
+		
+				if ($conn->create_container('daguerreo_' . $formdata['albumName'])) {
+					// make it public so we can see the images
+					$cont = $conn->get_container('daguerreo_' . $formdata['albumName']);
+					$cont->make_public();
+					$this->Session->setFlash("Successfully created album " . $formdata['albumName']);
+				}
+				else {
+					$this->Session->setFlash("Failed to create album " . $formdata['albumName']);
+				}
+			}
+			else {
+				$this->Session->setFlash("Failed to create album: no album title received");
+			}
+			
+		}
+		else {
+			$this->Session->setFlash("Failed to create album: no data received");
+		}
+		
+		$this->redirect('/admin/photos/' . $albumName);
+	}
+	
+	public function deletealbum ($albumName) {
+		
+		$this->loadModel('Photo');
+		
+		$conn = $this->Photo->connect();
+		$cont = $conn->get_container('daguerreo_' . $albumName);
+		
+		// delete every object first
+		$photos = $cont->list_objects();
+		foreach ($photos as $photo) {
+			if ($cont->delete_object($photo) != TRUE) {
+				$this->Session->setFlash("Failed to delete album " . $albumName . ": deletion of photo " . $photo . " failed");
+				$this->redirect('/admin/photos/');
+			}
+		}
+		
+		if ($conn->delete_container('daguerreo_' . $albumName))
+			$this->Session->setFlash("Successfully deleted album " . $albumName);
+		else
+			$this->Session->setFlash("Failed to delete album " . $albumName);
 		
 		$this->redirect('/admin/photos/');
 	}

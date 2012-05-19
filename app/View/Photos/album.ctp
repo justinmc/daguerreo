@@ -11,9 +11,9 @@
 	<?php if (!($key % 2)): ?>
 	<tr>
 	<?php endif; ?>
-		<td>
+		<td style="text-align: center;">
 			<a href="#" rel="lightbox">
-				<img height="200" width="300" src="<?php echo ($cdn_uri . '/' . $photo); ?>" />
+				<img height="200" src="<?php echo ($cdn_uri . '/' . $photo); ?>" />
 			</a>
 		</td>
 	<?php if ($key % 2): ?>

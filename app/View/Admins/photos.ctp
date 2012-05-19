@@ -14,7 +14,14 @@
 		<th>&nbsp;</th>
 	</tr>
 	<tr>
-		<td><?= $this->Html->link('创建 Create New', '/admin/newalbum/'); ?></td>
+		<td>
+			创建 Create New Album
+			<form enctype="multipart/form-data" method="post" action="/admin/newalbum/" name="addAlbum">
+			明子 Album Name: <input type="text" name="albumName">
+			<br />
+			<input type="submit" value="提交 Submit">
+			</form>
+		</td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
