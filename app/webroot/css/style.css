@@ -35,6 +35,14 @@
 	text-decoration: none;	
 }
 
+table.nolines tr {
+	background: transparent;
+}
+
+div.album img {
+	float: left;
+}
+
 
 /*
  * HTML 5 Boilerplate and Cake PHP style

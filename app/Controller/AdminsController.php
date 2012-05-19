@@ -33,7 +33,10 @@ class AdminsController extends AppController {
 		 //Now lets put some stuff into the Object =)
 		 //$obj->write('LetsPutSomeDataHere');
 
-		$conts = $conn->get_containers();
+		$cont = $conn->get_containers("daguerreo");
+		$lol = $cont->list_objects(0, null, null, 'ui/');
+		
+		die(var_export($lol));
 
 		$this->set(array('conts' => $conts));
 	}

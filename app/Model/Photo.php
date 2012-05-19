@@ -13,4 +13,18 @@ class Photo extends AppModel {
 		return $conn;
 	}
 	
+	public function getPrefixContainers ($conn, $prefix) {
+		
+		$contsList = $conn->list_containers();
+
+		$conts = array();
+		foreach ($contsList as $contName) {
+			if (strpos($contName, $prefix) === 0) {	
+				$conts[] = $conn->get_container("$contName");
+			} 
+		}
+		
+		return $conts;
+	}
+	
 }
