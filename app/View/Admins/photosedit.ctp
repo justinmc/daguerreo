@@ -24,7 +24,7 @@
 	<?php foreach ($photos as $photo): ?>
 	<tr>
 		<td>&nbsp;</td>
-		<td><?= $photo; ?></td>
+		<td><?= ($cdn_uri . '/' . $photo) ?></td>
 		<td><img height="50" width="75" src="<?php echo ($cdn_uri . '/' . $photo); ?>" /></td>
 		<td><a href="#" class="click_delete" data-link="<?= ('/admin/deletephoto/' . $title . '/' . $photo) ?>">删除照片 Delete Photo</a></td>
 	</tr>
