@@ -31,24 +31,23 @@ class UsersController extends AppController {
     		
     	$this->layout = 'home';
 		
+		
+		
+     
+		
 		// if posted data, login
 		if ($this->request->is('post')) {
-    		
-			$formdata = $this->request->data;
 			
-			$dbdata = array(
-				'username' => $formdata['User']['username'],
-				'password' => $formdata['User']['password']
-			);
-			
-			if ($this->Auth->login($formdata)) { // $this->Auth->isAuthorized
+			if ($this->Auth->login()) {
 				$this->Session->setFlash("成功登入 Login successful");
 				$this->redirect('/admin/');
-			}
-			else {
-				$this->Session->setFlash("登入失败：无此用户／密码 Login failed: no such user/password pair");
-			}
-		}
+	            $this->redirect($this->Auth->redirect());
+	        } 
+	        else {
+	            $this->Session->setFlash("登入失败：无此用户／密码 Login failed: no such user/password pair");
+	        }
+    	}
+    		
     }
  
     function logout() {
