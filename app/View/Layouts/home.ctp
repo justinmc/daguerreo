@@ -80,9 +80,17 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			</div>
 			<div id="rightbar">
 				<div id="fixed">
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-2475745093547689";
+					/* 180&#42;150 small retangle */
+					google_ad_slot = "8421616956";
+					google_ad_width = 180;
+					google_ad_height = 150;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
 				</div>
 			</div>
 		</div>
