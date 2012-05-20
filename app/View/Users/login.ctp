@@ -1,3 +1,4 @@
+<h2>Administrator Login</h2>
 <?php
 echo $this->Session->flash('auth');
 echo $this->Form->create('User');

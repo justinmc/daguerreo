@@ -15,6 +15,7 @@
 	height: 120px;
 	position: fixed;
 	top: 0px;
+	z-index: 1;
 	text-align: center;
 	background: #FF3232;
 }
