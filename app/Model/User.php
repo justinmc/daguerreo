@@ -29,6 +29,13 @@ class User extends AppModel {
         		'required' => true,
         		'message' => 'Passwords must match' 
 			)
+		),
+		'password_old' => array(
+			'equalTo' => array(
+				'rule' => array("1", "1"),
+				'required' => true,
+				'message' => 'Password incorrect'
+			)
 		)
   	);
 

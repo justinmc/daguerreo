@@ -6,6 +6,7 @@
  * move api connection info to Config folder
  * split adminsphotos adminsposts
  * edit album weird error?
+ * finish delete user action
  * 
  */
 
@@ -17,6 +18,33 @@ class AdminsController extends AppController {
 	public function index() {
 		
 	    $this->layout = 'home';
+	}
+	
+	public function users() {
+		
+		$this->layout = 'home';
+		$this->loadModel('Users');
+		
+		$users = $this->Users->find('all', array(
+			'fields' => array('username')
+			)
+		);
+		
+		$this->set(array('users' => $users));
+	}
+
+	public function deleteuser ($username) {
+		
+		$this->loadModel('Users');
+		
+//		$this->Users->delete ?
+		
+//		if ($cont->delete_object($photoName))
+//			$this->Session->setFlash("Successfully deleted photo " . $photoName);
+//		else
+			$this->Session->setFlash("Failed to delete user " . $username);
+		
+		$this->redirect('/admin/users/');
 	}
 	
 	public function photos() {

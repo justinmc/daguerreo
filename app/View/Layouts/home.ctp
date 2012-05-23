@@ -33,7 +33,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		echo $this->Html->script('lightbox');
 		echo $this->Html->script('/ckeditor/ckeditor');
-		echo $this->Html->script('http://code.jquery.com/jquery-1.7.2.min.js');
+//		echo $this->Html->script('http://code.jquery.com/jquery-1.7.2.min.js');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -47,26 +47,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				<br />
 				<h1><?php echo $this->Html->link('光影小镇 Shadow Town', '/'); ?></h1>
 				<div id="navbar">
-						<div id="blog">
-							<?php echo $this->Html->link('博客', '/blog/'); ?><br />
-							<?php echo $this->Html->link('Blog', '/blog/'); ?>
-						</div>
-						<div id="archive">
-						<?php echo $this->Html->link('文档', '/archive/'); ?><br/>
-						<?php echo $this->Html->link('Archive', '/archive/'); ?>
-						</div>
-						<div id="photos">
-						<?php echo $this->Html->link('相册', '/photos/'); ?><br/>
-						<?php echo $this->Html->link('Album', '/photos/'); ?>
-						</div>
-						<div id="about">
-						<?php echo $this->Html->link('关于', '/about/'); ?><br/>
-						<?php echo $this->Html->link('About', '/about/'); ?>
-						</div>
-						<div id="admin">
-						<?php echo $this->Html->link('管理员', '/admin/'); ?><br/>
-						<?php echo $this->Html->link('Admin', '/admin/'); ?>	
-						</div>
+					<a href="<?= $this->Html->url('/blog/'); ?>"><span>博客<br />Blog</span></a>
+					<a href="<?= $this->Html->url('/archive/'); ?>"><span>文档<br />Archive</span></a>
+					<a href="<?= $this->Html->url('/photos/'); ?>"><span>相册<br />Album</span></a>
+					<a href="<?= $this->Html->url('/about/'); ?>"><span>关于<br />About</span></a>
+					<a href="<?= $this->Html->url('/admin/'); ?>"><span>管理员<br />Admin</span></a>
 				</div>
 			</div>
 		</div>

@@ -2,11 +2,10 @@
 
 /*
  * todo:
- * form verification
  * move crap into its own controller action (like login and register are now)
  * figure out what you want to do with the registration page and admin urls
  * logout button
- * make login actually check if you're in the database!
+ * fix edit user (lookup equalTo validation function)
  */
 
 class UsersController extends AppController {
@@ -75,5 +74,25 @@ class UsersController extends AppController {
 			}
 		}
 		
+	}
+	
+	public function edit($username) {
+		
+		$this->layout = 'home';
+		
+		// if posted data, register the user
+		if ($this->request->is('post')) {
+    		
+			$formdata = $this->request->data;
+			
+			if ($this->User->validates(array('fieldList' => array('password', 'password_confirm', 'password_old')))) {
+				
+			}
+			else {
+				$this->Session->setFlash("Password change failed");
+			}
+		}
+		
+		$this->set(array('username' => $username));
 	}
 }
