@@ -7,7 +7,7 @@
  * split adminsphotos adminsposts
  * edit album weird error?
  * finish delete user action
- * 
+ * check links on live server.
  */
 
 class AdminsController extends AppController {

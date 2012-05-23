@@ -1,6 +1,6 @@
 <h2>编辑博客 Edit Post</h2>
 <br />
-<form name="addPost" action="/admin/postsedit" method="post" enctype="multipart/form-data">
+<form name="addPost" action="<?= $this->Html->url('/admin/postsedit/') ?>" method="post" enctype="multipart/form-data">
 	<table>
 	<tbody>
 		<tr>
