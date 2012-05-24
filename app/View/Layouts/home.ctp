@@ -51,7 +51,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<a href="<?= $this->Html->url('/archive/'); ?>"><span>文档<br />Archive</span></a>
 					<a href="<?= $this->Html->url('/photos/'); ?>"><span>相册<br />Album</span></a>
 					<a href="<?= $this->Html->url('/about/'); ?>"><span>关于<br />About</span></a>
-					<a href="<?= $this->Html->url('/admin/'); ?>"><span>管理员<br />Admin</span></a>
 				</div>
 			</div>
 		</div>
