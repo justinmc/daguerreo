@@ -31,9 +31,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->css('style');
 		echo $this->Html->css('lightbox');
 
+		echo $this->Html->script('http://code.jquery.com/jquery-1.7.2.min.js');
 		echo $this->Html->script('lightbox');
 		echo $this->Html->script('/ckeditor/ckeditor');
-		echo $this->Html->script('http://code.jquery.com/jquery-1.7.2.min.js');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
