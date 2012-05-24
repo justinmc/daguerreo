@@ -1,4 +1,4 @@
-<a href="/photos"><h3>Photos</h3></a>
+<a href="<?= $this->Html->url('/photos/') ?>"><h3>Photos</h3></a>
 <br />
 <h4><?php echo $title; ?></h4>
 <table class="nolines">
