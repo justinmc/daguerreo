@@ -18,11 +18,11 @@
 			$firstPicLink = $cont->cdn_uri . '/' . $firstPic[0];
 			?>
 			<div class="album">
-				<a href="<?php echo '/photos/' . str_replace('daguerreo_', '', $cont->name);; ?>">
-					<img height="100" width="150" src="<?php echo $firstPicLink; ?>" />
+				<a href="<?= $this->Html->url('/photos/' . str_replace('daguerreo_', '', $cont->name)) ?>">
+					<img height="100" src="<?php echo $firstPicLink; ?>" />
 				</a>
-				<a href="<?php echo '/photos/' . str_replace('daguerreo_', '', $cont->name);; ?>">
-					<span class="name"><?php echo str_replace('daguerreo_', '', $cont->name);; ?></span>
+				<a href="<?= $this->Html->url('/photos/' . str_replace('daguerreo_', '', $cont->name)) ?>">
+					<span class="name"><?php echo str_replace('daguerreo_', '', $cont->name); ?></span>
 				</a>
 				<br />
 				<span class="photocount">
