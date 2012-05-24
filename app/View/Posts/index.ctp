@@ -1,6 +1,6 @@
 <?php foreach($posts as $post): ?>
 <a href="<?= $this->Html->url('/blog/' . $post['Post']['title_py']) ?>"><h3><?php echo $post['Post']['title_cn']; ?></h3></a>
-<a href="<?= $this->Html->url('/blog/' . $post['Post']['title_py']) ?>"><img src="/<?php echo $post['Post']['titlepic']; ?>" width="800" /></a>
+<a href="<?= $this->Html->url('/blog/' . $post['Post']['title_py']) ?>"><img src="<?= $this->Html->url('/' . $post['Post']['titlepic']) ?>" width="800" /></a>
 <br />
 <div class="post">
 <span>Posted: <?php echo $this->Time->nice($post['Post']['date']); ?></span>
