@@ -1,0 +1,11 @@
+/app/Config
+/app/tmp
+/lib/Cake/Console/Templates/skel/tmp/
+/plugins
+/build
+/dist
+.DS_Store
+tags
+.htaccess
+/app/.htaccess
+/app/webroot/.htaccess
