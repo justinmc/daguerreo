@@ -268,7 +268,7 @@ class AdminsController extends AppController {
     	if ($this->request->is('post')) {
     		
 			$formdata = $this->request->data;
-			
+
 			// Are we adding a new post, or editing an old one?
 			$errorTitle;
 			$addPost;
@@ -304,7 +304,7 @@ class AdminsController extends AppController {
 					'conditions' => array(
 						'id' => $formdata['id']
 						),
-					'fields' => array('id', 'title_cn', 'title_py', 'titlepic', 'post')
+					'fields' => array('id', 'title_cn', 'title_py', 'titlepic', 'post', 'post_intro')
 					)
 				);
 				$success = $this->Edits->add($formdata, $olddata['Post']);
@@ -336,6 +336,20 @@ class AdminsController extends AppController {
 			}
 		}
 		return 0;
+	}
+	
+	// Uploads a file in $_FILES for the redactor wysiwyg editor, returns <img> tag
+	public function redactorUpload () {
+		if(isset($_FILES['file']) && !empty($_FILES['file']['name'])) {
+			if (!$_FILES['file']['error']) {
+				if (!file_exists("files/" . $_FILES['file']['name'])) {
+			    	move_uploaded_file($_FILES['file']['tmp_name'], 'files/' . $_FILES['file']['name']);
+			    }
+			}
+			
+			echo '<img src="/files/' . $_FILES['file']['name'] . '" />';
+		}
+		exit();
 	}
 	
 }
