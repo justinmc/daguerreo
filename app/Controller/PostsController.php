@@ -1,10 +1,5 @@
 <?php
 
-/*
- * todo:
- * paginator!
- */
-
 class PostsController extends AppController {
     	
     public $helpers = array('Html', 'Time', 'Paginator');
