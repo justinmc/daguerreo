@@ -33,24 +33,8 @@
 		<td><?= str_replace('daguerreo_', '', $cont->name); ?></td>
 		<td><?= $cont->object_count; ?></td>
 		<td><?= round($cont->bytes_used / 1048576); ?> Mb</td>
-		<td><a href="#" class="click_delete" data-link="<?= ('/admin/deletealbum/' . str_replace('daguerreo_', '', $cont->name)) ?>">删除相册 Delete Album</a></td>
+		<td><a href="<?= ('/admin/deletealbum/' . str_replace('daguerreo_', '', $cont->name)) ?>" data-confirm-link="这将永久删除你的相册。你确定吗? This will permanently delete your album.  Are you sure?">删除相册 Delete Album</a></td>
 	</tr>
 	<?php endforeach; ?>
 </tbody>
 </table>
-
-<script type="text/javascript">
-	
-$(document).ready(function () {
-	
-	$(".click_delete").click(function () {
-		var deletepost = confirm('这将永久删除你的相册。你确定吗? This will permanently delete your album.  Are you sure?');
-				
-		if (deletepost)
-			window.location = $(this).data('link');
-		else
-			return false;
-	});
-});
-	
-</script>

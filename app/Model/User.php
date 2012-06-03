@@ -31,19 +31,39 @@ class User extends AppModel {
 			)
 		),
 		'password_old' => array(
-			'equalTo' => array(
-				'rule' => array("1", "1"),
+			'isCurrentPassword' => array(
+				'rule' => array('isCurrentPassword'),
 				'required' => true,
 				'message' => 'Password incorrect'
 			)
 		)
   	);
 
+	// custom validation method that checks if the submitted password is the current user's password
+	function isCurrentPassword ($submitted) {
+		$user = $this->getCurrentUser();
+
+		$result = $this->find('first', array(
+					'conditions' => array('id' => $user['id']),
+					'fields' => array('password')));
+		
+		return ($submitted['password_old'] === $result['User']['password']);
+	}
+
 	public function beforeSave() {
 	    if (isset($this->data[$this->alias]['password'])) {
-	        $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+	    	$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
 	    }
     	return true;
 	}
+	
+	// get the currently logged in user (id and username)
+	private function getCurrentUser() {
+		App::import('component', 'CakeSession');        
+		$user = CakeSession::read('Auth.User');
+
+		return $user;
+	}
+	
 	
 }
