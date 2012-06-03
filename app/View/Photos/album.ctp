@@ -13,7 +13,7 @@
 	<?php endif; ?>
 		<td style="text-align: center;">
 			<a href="#" rel="lightbox">
-				<img src="<?= $this->Html->url('/images/view/*/200/1/' . ($cdn_uri . '/' . $photo)); ?>" />
+				<img src="<?php echo $this->Html->url('/images/view/*/200/1/') . ($cdn_uri . '/' . $photo); ?>" />
 			</a>
 		</td>
 	<?php if ($key % 2): ?>
