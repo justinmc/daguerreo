@@ -5,7 +5,7 @@ class PostsController extends AppController {
     public $helpers = array('Html', 'Time', 'Paginator');
 	
 	public $paginate = array(
-			'fields' => array('id', 'title_cn', 'title_py', 'date', 'titlepic', 'post'), 
+			'fields' => array('id', 'title_cn', 'title_py', 'date', 'titlepic', 'post', 'post_intro'), 
 			'order' => 'date DESC',
 			'conditions' => array('deletions.posts_id is null'), 
 			'joins' => array(

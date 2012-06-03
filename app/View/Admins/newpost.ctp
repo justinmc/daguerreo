@@ -46,8 +46,19 @@
 		</tr>
 	</tbody>
 	</table>
-	<textarea class="ckeditor" name="post">在这里写一篇新博客 Write a new post here!</textarea>
+	<textarea class="redactor_content" name="post_intro">Post - Before the break</textarea>
+	<br />
+	<textarea class="redactor_content" name="post">Post - After the break</textarea>
 	<br />
 	<input type="submit" value="提交 Submit" />
 	<br /><br />
 </form>
+
+<script type="text/javascript">
+	$(document).ready(
+		function()
+		{
+			$('.redactor_content').redactor();
+		}
+	);
+</script>
