@@ -34,6 +34,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->script('http://code.jquery.com/jquery-1.7.2.min.js');
 		echo $this->Html->script('lightbox');
 		echo $this->Html->script('/ckeditor/ckeditor');
+		echo $this->Html->script('confirm-link');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -51,6 +52,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<a href="<?= $this->Html->url('/archive/'); ?>"><span>文档<br />Archive</span></a>
 					<a href="<?= $this->Html->url('/photos/'); ?>"><span>相册<br />Album</span></a>
 					<a href="<?= $this->Html->url('/about/'); ?>"><span>关于<br />About</span></a>
+					<?php if ($this->Session->read('Auth.User')): ?>
+					<a href="<?= $this->Html->url('/admin/'); ?>"><span>管理<br />Admin</span></a>
+					<a href="<?= $this->Html->url('/users/logout/'); ?>"><span>退出<br />Logout</span></a>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>

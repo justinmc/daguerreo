@@ -3,8 +3,6 @@
 /*
  * todo:
  * move crap into its own controller action (like login and register are now)
- * figure out what you want to do with the registration page and admin urls
- * logout button
  * fix edit user (lookup equalTo validation function)
  */
 
@@ -24,10 +22,9 @@ class UsersController extends AppController {
 		
 			$this->User->set($this->data);
 			if ($this->User->validates(array('fieldList' => array('username', 'password')))) {
-	
 				if ($this->Auth->login()) {
 					$this->Session->setFlash("成功登入 Login successful");
-					$this->redirect('/admin/');
+					$this->redirect(array('controller' => 'admin'));
 		            $this->redirect($this->Auth->redirect());
 		        } 
 		        else {
@@ -67,7 +64,7 @@ class UsersController extends AppController {
 	
 				$this->User->save($dbdata);
 				$this->Session->setFlash("用户注册成功 User registration successful");
-				$this->redirect('/admin/');
+				$this->redirect(array('controller' => 'admin'));
 			}
 			else {
 				$this->Session->setFlash("User registration failed");
@@ -80,19 +77,34 @@ class UsersController extends AppController {
 		
 		$this->layout = 'home';
 		
-		// if posted data, register the user
-		if ($this->request->is('post')) {
+		if (!empty($this->data)) {
     		
-			$formdata = $this->request->data;
+			$formdata = $this->data;
 			
+			// encrypt password_old so it can be validated
+			$formdata['User']['password_old'] = $this->Auth->password($formdata['User']['password_old']);
+			
+			$this->User->set($formdata);
 			if ($this->User->validates(array('fieldList' => array('password', 'password_confirm', 'password_old')))) {
+
+				unset($formdata['User']['password_confirm']);
+				unset($formdata['User']['password_old']);
+
+				if ($this->User->save($formdata, false)) {
+					$this->Session->setFlash("Password change successful");
+				}
+				else {
+					$this->Session->setFlash("Password change failed:  couldn't write to the database");
+				}
 				
 			}
 			else {
 				$this->Session->setFlash("Password change failed");
 			}
 		}
-		
-		$this->set(array('username' => $username));
+
+		$user = $this->User->find('first', array('conditions' => array('username' => $username)));
+				
+		$this->set(array('user' => $user));
 	}
 }

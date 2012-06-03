@@ -3,7 +3,6 @@
 /*
  * 
  * todo:
- * move api connection info to Config folder
  * split adminsphotos adminsposts
  * edit album weird error?
  * finish delete user action
@@ -25,26 +24,22 @@ class AdminsController extends AppController {
 		$this->layout = 'home';
 		$this->loadModel('Users');
 		
-		$users = $this->Users->find('all', array(
-			'fields' => array('username')
-			)
-		);
+		$users = $this->Users->find('all');
 		
 		$this->set(array('users' => $users));
 	}
 
-	public function deleteuser ($username) {
+	public function deleteuser ($userid) {
 		
 		$this->loadModel('Users');
+
+		$this->Users->id = 0;
+		if (0) //$this->Users->delete())
+			$this->Session->setFlash("Successfully deleted user");
+		else
+			$this->Session->setFlash("Failed to delete user: this feature is not yet implemented.  Contact the webmaster if you need a user deleted.");
 		
-//		$this->Users->delete ?
-		
-//		if ($cont->delete_object($photoName))
-//			$this->Session->setFlash("Successfully deleted photo " . $photoName);
-//		else
-			$this->Session->setFlash("Failed to delete user " . $username);
-		
-		$this->redirect('/admin/users/');
+		$this->redirect(array('controller' => 'admin', 'action' => 'users'));
 	}
 	
 	public function photos() {
@@ -88,12 +83,12 @@ class AdminsController extends AppController {
 			if(isset($_FILES['photo']) && !empty($_FILES['photo']['name'])) {
 				if ($_FILES["photo"]["error"] > 0) {
 					$this->Session->setFlash("Photo add failed: " . $_FILES["photo"]["error"][0]);
-					$this->redirect('/admin/photos/' . $formdata['albumName']);
+					$this->redirect(array('controller' => 'admin', 'action' => 'photos'), $formdata['albumName']);
 				}
 				else {
 					if (file_exists("files/tmp/" . $_FILES["photo"]["name"])) {
 				    	$this->Session->setFlash("Photo add failed: filename already exists on the web server");
-						$this->redirect('/admin/photos/' . $formdata['albumName']);
+						$this->redirect(array('controller' => 'admin', 'action' => 'photos'), $formdata['albumName']);
 				    }
 				    else {
 				    	
@@ -114,7 +109,7 @@ class AdminsController extends AppController {
 						
 				    	if ($result != TRUE) {
 				    		$this->Session->setFlash("Photo add failed: could not write to Cloud Files");
-							$this->redirect('/admin/photos/' . $formdata['albumName']);
+							$this->redirect(array('controller' => 'admin', 'action' => 'photos'), $formdata['albumName']);
 						}
 						else {
 							$this->Session->setFlash("Photo added successfully");
@@ -124,15 +119,15 @@ class AdminsController extends AppController {
 			}
 			else {
 				$this->Session->setFlash("Photo add failed: file not received");
-				$this->redirect('/admin/photos/' . $formdata['albumName']);
+				$this->redirect(array('controller' => 'admin', 'action' => 'photos'), $formdata['albumName']);
 			}
 		}
 		else {
 			$this->Session->setFlash("Photo add failed: no data received");
-			$this->redirect('/admin/photos/' . $formdata['albumName']);
+			$this->redirect(array('controller' => 'admin', 'action' => 'photos'), $formdata['albumName']);
 		}
 		
-		$this->redirect('/admin/photos/' . $formdata['albumName']);
+		$this->redirect(array('controller' => 'admin', 'action' => 'photos'), $formdata['albumName']);
 	}
 	
 	public function deletephoto ($albumName, $photoName) {
@@ -147,7 +142,7 @@ class AdminsController extends AppController {
 		else
 			$this->Session->setFlash("Failed to delete photo " . $photoName);
 		
-		$this->redirect('/admin/photos/' . $albumName);
+		$this->redirect(array('controller' => 'admin', 'action' => 'photos'), $albumName);
 	}
 	
 	public function newalbum () {
@@ -181,7 +176,7 @@ class AdminsController extends AppController {
 			$this->Session->setFlash("Failed to create album: no data received");
 		}
 		
-		$this->redirect('/admin/photos/' . $albumName);
+		$this->redirect(array('controller' => 'admin', 'action' => 'photos'), $albumName);
 	}
 	
 	public function deletealbum ($albumName) {
@@ -196,7 +191,7 @@ class AdminsController extends AppController {
 		foreach ($photos as $photo) {
 			if ($cont->delete_object($photo) != TRUE) {
 				$this->Session->setFlash("Failed to delete album " . $albumName . ": deletion of photo " . $photo . " failed");
-				$this->redirect('/admin/photos/');
+				$this->redirect(array('controller' => 'admin', 'action' => 'photos'));
 			}
 		}
 		
@@ -205,7 +200,7 @@ class AdminsController extends AppController {
 		else
 			$this->Session->setFlash("Failed to delete album " . $albumName);
 		
-		$this->redirect('/admin/photos/');
+		$this->redirect(array('controller' => 'admin', 'action' => 'photos'));
 	}
 	
 	public function posts() {
@@ -261,7 +256,7 @@ class AdminsController extends AppController {
 		else 
 			$this->Session->setFlash("删除失败－已存在该删除纪录 Delete failed - delete record already exists");
 
-		$this->redirect('/admin');
+		$this->redirect(array('controller' => 'admin'));
 	}
 
 	// Add or edit a post in the database
@@ -297,7 +292,7 @@ class AdminsController extends AppController {
 			}
 			else {
 				$this->Session->setFlash($errorTitle . " failed: " . $uploadResult);
-				$this->redirect('/admin/editpost/' . $formdata['original_title_py']);
+				$this->redirect(array('controller' => 'admin', 'action' => 'editpost'), $formdata['original_title_py']);
 			}
 
 			// And send the data to the database
@@ -327,7 +322,7 @@ class AdminsController extends AppController {
 		else {
 			$this->Session->setFlash("输入失败：没有收到到信息 Submission failed: no information received");
 		}
-		$this->redirect('/admin/posts/');
+		$this->redirect(array('controller' => 'admin', 'action' => 'posts'));
     }
 	
 	// Uploads a file in $_FILES, returns 1 on success, 0 on no file, error on failure

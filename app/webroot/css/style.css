@@ -81,6 +81,22 @@
 	color: #FFFFFF;
 }
 
+.buttons {
+	text-align: center;
+	overflow: auto;
+}
+.buttons span {
+	float: left;
+	margin-right: 32px;
+	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-size:120%;
+	font-weight: bold;
+	text-decoration: none;
+}
+.buttons a:hover {
+	color: #FF3232;
+}
+
 table.nolines tr {
 	background: transparent;
 }

@@ -26,24 +26,8 @@
 		<td><?= $post['Post']['id']; ?></td>
 		<td><?= $post['Post']['title_cn']; ?></td>
 		<td><?= $this->Time->nice($post['Post']['date']); ?></td>
-		<td><a href="#" class="click_delete" data-link="<?= ('/admin/deletepost/' . $post['Post']['id']) ?>">Delete Post</a></td>
+		<td><a href="<?= ('/admin/deletepost/' . $post['Post']['id']) ?>" data-confirm-link="这将永久删除你的博客。你确定吗? This will permanently delete your post.  Are you sure?">Delete Post</a></td>
 	</tr>
 	<?php endforeach; ?>
 </tbody>
 </table>
-
-<script type="text/javascript">
-	
-$(document).ready(function () {
-	
-	$(".click_delete").click(function () {
-		var deletepost = confirm('这将永久删除你的博客。你确定吗? This will permanently delete your post.  Are you sure?');
-				
-		if (deletepost)
-			window.location = $(this).data('link');
-		else
-			return false;
-	});
-});
-	
-</script>
