@@ -17,11 +17,15 @@
 	<ul id="pagination">
 	<?php
 	
-	echo $this->Paginator->numbers(array( 
-		'separator' => '',
-		'tag' => 'li'
-	));
+	$params = $this->Paginator->params->params;
+	for ($i = 1; $i <= $params['paging']['Post']['pageCount']; $i++):
 	
 	?>
+	<a href="<?= $this->Paginator->url(array('page' => $i)) ?>" >
+		<li <?php if ($i == $params['paging']['Post']['page']) echo 'class="current"'; ?>>
+			<?= $i ?>
+		</li>
+	</a>
+	<?php endfor; ?>
 	</ul>
 </div>
