@@ -38,3 +38,11 @@
 	<?php endforeach; ?>
 </tbody>
 </table>
+<br /><br />
+<h3>Want to upload multiple photos at a time?</h3>
+<p>
+	This system is limited in the size of files that it can take and the number of files that can be uploaded at any time.  If you want to batch-upload files, you can do it using <a href="http://www.fireuploader.com/">FireUploader</a> for Firefox.  There's an article about using FireUploader with Rackspace Cloudfiles <a href="http://www.rackspace.com/knowledge_center/index.php/Uploading_content_to_a_container_using_a_tool_like_Fire_Uploader">here</a>.
+</p>
+<p>
+	  Just be sure to create your albums here in this website first and then upload to them.  This website will only use albums prefixed by "daguerreo_", and Fireuploader does not support creating directories with underscores.
+</p>
