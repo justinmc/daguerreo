@@ -50,7 +50,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				<div id="navbar">
 					<a href="<?= $this->Html->url('/blog/'); ?>"><span>博客<br />Blog</span></a>
 					<a href="<?= $this->Html->url('/archive/'); ?>"><span>文档<br />Archive</span></a>
-					<a href="<?= $this->Html->url('/photos/'); ?>"><span>相册<br />Album</span></a>
+					<a href="<?= $this->Html->url('/photos/'); ?>"><span>相册<br />Albums</span></a>
 					<a href="<?= $this->Html->url('/about/'); ?>"><span>关于<br />About</span></a>
 					<?php if ($this->Session->read('Auth.User')): ?>
 					<a href="<?= $this->Html->url('/admin/'); ?>"><span>管理<br />Admin</span></a>
