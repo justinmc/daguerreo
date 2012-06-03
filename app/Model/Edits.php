@@ -34,12 +34,14 @@ class Edits extends AppModel {
 		$unformatted['title_cn'] = addslashes($unformatted['title_cn']);
 		$unformatted['title_py'] = $this->formatTitle($unformatted['title_py']);
 		$unformatted['post'] = addslashes($unformatted['post']);
+		$unformatted['post_intro'] = addslashes($unformatted['post_intro']);
 		
 		// The only fields that can be edited
 		$formatted = array('title_cn' => $unformatted['title_cn'], 
 						'title_py' => $unformatted['title_py'],
 						'titlepic' => $unformatted['titlepic'], 
-						'post' => $unformatted['post']);
+						'post' => $unformatted['post'],
+						'post_intro' => $unformatted['post_intro']);
 						
 		return $formatted;
 	}

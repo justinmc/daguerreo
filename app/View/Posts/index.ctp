@@ -7,10 +7,10 @@
 </div>
 <br /><br />
 <p>
-	<?php echo $post['Post']['post']; ?>
+	<?php echo $post['Post']['post_intro']; ?>
 </p>
-
-<br /><br />
+<a href="<?= $this->Html->url('/blog/' . $post['Post']['title_py']) ?>">Full Article</a>
+<br /><br /><br />
 <?php endforeach; ?>
 <br />
 <div class="centerme">

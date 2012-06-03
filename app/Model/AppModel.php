@@ -42,7 +42,7 @@ class AppModel extends Model {
 	// Format the pinyin title, for url matching purposes
 	public function formatTitle ($unformatted) {
 	
-		return str_replace(' ', '_', preg_replace("/[^a-z0-9 ]/", '', strtolower($unformatted)));
+		return str_replace(' ', '_', preg_replace("/[^a-z0-9_ ]/", '', strtolower($unformatted)));
 	}
 	
 	// Form validation function to match fields (password and confirm password)

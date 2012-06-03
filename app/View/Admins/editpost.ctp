@@ -42,7 +42,7 @@
 				上传标题图片 Upload a Title Photo:
 			</td>
 			<td>
-				<img src="/<? echo $post['Post']['titlepic']; ?>" width="800" height="100" />
+				<img src="/<? echo $post['Post']['titlepic']; ?>" style="width: 100%;" />
 				<br /><br />
 				<input type="file" name="titlepic" />
 				<input type="text" name="original_titlepic" readonly="readonly" hidden="hidden" value="<? echo $post['Post']['titlepic']; ?>" />
@@ -50,8 +50,19 @@
 		</tr>
 	</tbody>
 	</table>
-	<textarea class="ckeditor" name="post"><? echo $post['Post']['post']; ?></textarea>
+	<textarea class="redactor_content" name="post_intro"><? echo $post['Post']['post_intro']; ?></textarea>
+	<br />
+	<textarea class="redactor_content" name="post"><? echo $post['Post']['post']; ?></textarea>
 	<br />
 	<input type="submit" value="提交 Submit" />
 	<br /><br />
 </form>
+
+<script type="text/javascript">
+	$(document).ready(
+		function()
+		{
+			$('.redactor_content').redactor();
+		}
+	);
+</script>

@@ -73,6 +73,7 @@ class Post extends AppModel {
 		$unformatted['title_cn'] = addslashes($unformatted['title_cn']);
 		$unformatted['title_py'] = $this->formatTitle($unformatted['title_py']);
 		$unformatted['post'] = addslashes($unformatted['post']);
+		$unformatted['post_intro'] = addslashes($unformatted['post_intro']);
 		
 		// Must have apostrophes on strings if we're editing, otherwise leave it alone
 		$formatted;
@@ -82,14 +83,16 @@ class Post extends AppModel {
 						'title_py' => $unformatted['title_py'],
 						'date' => $unformatted['date'], 
 						'titlepic' => $unformatted['titlepic'], 
-						'post' => $unformatted['post']);
+						'post' => $unformatted['post'],
+						'post_intro' => $unformatted['post_intro']);
 		}
 		else {
 			$formatted = array('id' => $unformatted['id'],
 						'title_cn' => "'{$unformatted['title_cn']}'", 
 						'title_py' => "'{$unformatted['title_py']}'",
 						'titlepic' => "'{$unformatted['titlepic']}'", 
-						'post' => ("'{$unformatted['post']}'"));
+						'post' => ("'{$unformatted['post']}'"),
+						'post_intro' => ("'{$unformatted['post_intro']}'"));
 		}
 						
 		return $formatted;
