@@ -19,7 +19,7 @@
 			?>
 			<div class="album">
 				<a href="<?= $this->Html->url('/photos/' . str_replace('daguerreo_', '', $cont->name)) ?>">
-					<img height="100" src="<?php echo $firstPicLink; ?>" />
+					<img src="/images/view/*/100/1/<?php echo $firstPicLink; ?>" />
 				</a>
 				<a href="<?= $this->Html->url('/photos/' . str_replace('daguerreo_', '', $cont->name)) ?>">
 					<span class="name"><?php echo str_replace('daguerreo_', '', $cont->name); ?></span>

@@ -13,7 +13,7 @@
 	<?php endif; ?>
 		<td style="text-align: center;">
 			<a href="#" rel="lightbox">
-				<img height="200" src="<?php echo ($cdn_uri . '/' . $photo); ?>" />
+				<img src="/images/view/*/200/1/<?php echo ($cdn_uri . '/' . $photo); ?>" />
 			</a>
 		</td>
 	<?php if ($key % 2): ?>
