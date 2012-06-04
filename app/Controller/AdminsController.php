@@ -6,6 +6,7 @@
  * split adminsphotos adminsposts
  * edit album weird error?
  * finish delete user action
+ * redactor pic uploading!
  */
 
 class AdminsController extends AppController {
