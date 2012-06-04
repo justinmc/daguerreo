@@ -342,12 +342,12 @@ class AdminsController extends AppController {
 	public function redactorUpload () {
 		if(isset($_FILES['file']) && !empty($_FILES['file']['name'])) {
 			if (!$_FILES['file']['error']) {
-				if (!file_exists("files/" . $_FILES['file']['name'])) {
-			    	move_uploaded_file($_FILES['file']['tmp_name'], 'files/' . $_FILES['file']['name']);
+				if (!file_exists($this->Html->url('files/' . $_FILES['file']['name']))) {
+			    	move_uploaded_file($_FILES['file']['tmp_name'], $this->Html->url('files/' . $_FILES['file']['name']));
 			    }
 			}
 			
-			echo '<img src="/files/' . $_FILES['file']['name'] . '" />';
+			echo '<img src="' . $this->Html->url('/files/' . $_FILES['file']['name']) . '" />';
 		}
 		exit();
 	}
