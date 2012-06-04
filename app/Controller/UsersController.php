@@ -61,10 +61,15 @@ class UsersController extends AppController {
 			
 			$this->User->set($dbdata);
 			if ($this->User->validates(array('fieldList' => array('username', 'password', 'password_confirm')))) {
-	
-				$this->User->save($dbdata);
-				$this->Session->setFlash("用户注册成功 User registration successful");
+
+				if ($this->User->save($dbdata, false)) {
+					$this->Session->setFlash("用户注册成功 User registration successful");
+				}
+				else {
+					$this->Session->setFlash("User Registration failed: couldn't write to database");
+				}
 				$this->redirect(array('controller' => 'admin'));
+				
 			}
 			else {
 				$this->Session->setFlash("User registration failed");
