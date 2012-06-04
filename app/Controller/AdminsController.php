@@ -347,7 +347,7 @@ class AdminsController extends AppController {
 			    }
 			}
 			
-			echo '<img src="' . $this->Html->url('/files/' . $_FILES['file']['name']) . '" />';
+			echo $this->Html->image('/files/' . $_FILES['file']['name']); //'<img src="' . $this->Html->url('/files/' . $_FILES['file']['name']) . '" />';
 		}
 		exit();
 	}

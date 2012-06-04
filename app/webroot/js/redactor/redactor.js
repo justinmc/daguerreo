@@ -62,7 +62,7 @@ var RTOOLBAR = {};
 	
 			imageGetJson: false, // url (ex. /folder/images.json ) or false
 
-			imageUpload: '/admin/redactorUpload/', // url
+			imageUpload: 'http://184.106.225.148/daguerreo/admin/redactorUpload/', // url
 			linkFileUpload: false, // url
 			fileUpload: false, // url
 
