@@ -26,7 +26,7 @@
 		<td><?= $post['Post']['id']; ?></td>
 		<td><?= $post['Post']['title_cn']; ?></td>
 		<td><?= $this->Time->nice($post['Post']['date']); ?></td>
-		<td><a href="<?= ('/admin/deletepost/' . $post['Post']['id']) ?>" data-confirm-link="这将永久删除你的博客。你确定吗? This will permanently delete your post.  Are you sure?">Delete Post</a></td>
+		<td><a href="<?= $this->Html->url('/admin/deletepost/' . $post['Post']['id']) ?>" data-confirm-link="这将永久删除你的博客。你确定吗? This will permanently delete your post.  Are you sure?">Delete Post</a></td>
 	</tr>
 	<?php endforeach; ?>
 </tbody>
