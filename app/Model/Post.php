@@ -61,7 +61,7 @@ class Post extends AppModel {
 			    	$result = "Upload failed: filename already exists on the server";
 			    }
 			    else {
-			    	move_uploaded_file($_FILES["titlepic"]["tmp_name"], "files/" . $_FILES["titlepic"]["name"]);
+			    	move_uploaded_file($_FILES["titlepic"]["tmp_name"], $this->webroot . "files/" . $_FILES["titlepic"]["name"]);
 			    }
 			}
 		}
