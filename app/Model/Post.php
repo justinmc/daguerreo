@@ -49,7 +49,7 @@ class Post extends AppModel {
 
 	// uploads a file to /files/
 	// returns 1 on success, failure message on failure
-	public function uploadFile ($_FILES) {
+	public function uploadFile ($_FILES, $webroot) {
 		
 		$result = 1;
 		if(isset($_FILES['titlepic']) && !empty($_FILES['titlepic']['name'])) {
@@ -57,11 +57,11 @@ class Post extends AppModel {
 				$result = "Upload failed: " . $_FILES["titlepic"]["error"][0];
 			}
 			else {
-				if (file_exists("files/" . $_FILES["titlepic"]["name"])) {
+				if (file_exists($webroot . "files/" . $_FILES["titlepic"]["name"])) {
 			    	$result = "Upload failed: filename already exists on the server";
 			    }
 			    else {
-			    	move_uploaded_file($_FILES["titlepic"]["tmp_name"], $this->webroot . "files/" . $_FILES["titlepic"]["name"]);
+			    	move_uploaded_file($_FILES["titlepic"]["tmp_name"], $webroot . "files/" . $_FILES["titlepic"]["name"]);
 			    }
 			}
 		}

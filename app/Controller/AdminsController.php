@@ -328,7 +328,8 @@ class AdminsController extends AppController {
 	// Uploads a file in $_FILES, returns 1 on success, 0 on no file, error on failure
 	private function uploadIfFile ($_FILES) {
 		if(isset($_FILES['titlepic']) && !empty($_FILES['titlepic']['name'])) {
-			$uploadResult = $this->Post->uploadFile($_FILES);
+			die($this->webroot);
+			$uploadResult = $this->Post->uploadFile($_FILES, $this->webroot);
 			if (!$uploadResult) {
 				return $uploadResult;
 			}
