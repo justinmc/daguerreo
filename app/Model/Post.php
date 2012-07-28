@@ -70,16 +70,16 @@ class Post extends AppModel {
 
 	// Takes an array of form data, formats it for db entry
 	private function formatPost ($unformatted) {
-		$unformatted['title_cn'] = addslashes($unformatted['title_cn']);
+		$unformatted['title_cn'] = $unformatted['title_cn'];
 		$unformatted['title_py'] = $this->formatTitle($unformatted['title_py']);
-		$unformatted['post'] = addslashes($unformatted['post']);
-		$unformatted['post_intro'] = addslashes($unformatted['post_intro']);
+		$unformatted['post'] = $unformatted['post'];
+		$unformatted['post_intro'] = $unformatted['post_intro'];
 		
 		// Must have apostrophes on strings if we're editing, otherwise leave it alone
 		$formatted;
 		if ($unformatted['id'] == $this->getNextId()) {
 			$formatted = array('id' => $unformatted['id'],
-						'title_cn' => $unformatted['title_cn'], 
+						'title_cn' => $unformatted['title_cn'],
 						'title_py' => $unformatted['title_py'],
 						'date' => $unformatted['date'], 
 						'titlepic' => $unformatted['titlepic'], 
